@@ -3,6 +3,14 @@
 #include <string.h>
 #include <sys/stat.h>
 
+/**
+ * sign工具其实只做了一件事情：将输入文件拷贝到输出文件，控制输出文件的大小为512字节，
+ * 并将最后两个字节设置为0x55AA（也就是ELF文件的magic number）
+ * 1 大小为512字节
+ * 2 多余的空间填0
+ * 3 第510个（倒数第二个）字节是0x55，
+ * 4 第511个（倒数第一个）字节是0xAA。
+*/
 int
 main(int argc, char *argv[]) {
     struct stat st;
